@@ -9,7 +9,7 @@ class Profile2 extends StatelessWidget {
     return Scaffold(
         body: Center(
       child: ElevatedButton(
-        onPressed: () => {Navigator.popUntil(context, (route) => route.isFirst)},
+        onPressed: () => {Navigator.of(context).pushNamedAndRemoveUntil('/', (Route<dynamic> route) => false)},
         child: Text('pop all'),
       ),
     ));

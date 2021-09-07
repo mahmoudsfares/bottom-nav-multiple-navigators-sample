@@ -11,8 +11,8 @@ class HomeTabRoutes {
 
 class HomeTabNavigator extends StatelessWidget {
 
-  final GlobalKey<NavigatorState>? navigatorKey;
   HomeTabNavigator({required this.navigatorKey});
+  final GlobalKey<NavigatorState>? navigatorKey;
 
   Map<String, WidgetBuilder> _routeBuilders(BuildContext context) {
     return {
