@@ -9,6 +9,7 @@ class Profile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(body: Center(child: ElevatedButton(
       onPressed: () {
+        // to tell the app that normal pop is now possible
         AppState.isFirstScreenInTab = false;
         Navigator.pushNamed(context, '/profile1');
       },

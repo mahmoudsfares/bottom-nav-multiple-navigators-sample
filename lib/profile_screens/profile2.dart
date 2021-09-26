@@ -7,21 +7,17 @@ class Profile2 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-      onWillPop: () async {
-        Navigator.pop(context);
-        return false;
-      },
-      child: Scaffold(
-          body: Center(
-        child: ElevatedButton(
-          onPressed: () {
-            AppState.isFirstScreenInTab = true;
-            Navigator.of(context).pushNamedAndRemoveUntil('/', (Route<dynamic> route) => false);
-          },
-          child: Text('pop all'),
-        ),
-      )),
-    );
+    return Scaffold(
+        body: Center(
+      child: ElevatedButton(
+        onPressed: () {
+          // to tell the app that normal pop behaviour will not be possible
+          // as app will then be on the first screen of a tab that is not home
+          AppState.isFirstScreenInTab = true;
+          Navigator.of(context).pushNamedAndRemoveUntil('/', (Route<dynamic> route) => false);
+        },
+        child: Text('pop all'),
+      ),
+    ));
   }
 }

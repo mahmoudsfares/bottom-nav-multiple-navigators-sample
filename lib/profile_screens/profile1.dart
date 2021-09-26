@@ -9,9 +9,10 @@ class Profile1 extends StatelessWidget {
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () async {
+        // to tell the app that normal pop behaviour will not be possible
+        // as app will then be on the first screen of a tab that is not home
         AppState.isFirstScreenInTab = true;
-        Navigator.pop(context);
-        return false;
+        return true;
       },
       child: Scaffold(body: Center(child: ElevatedButton(
         onPressed: () => {Navigator.pushNamed(context, '/profile2')},

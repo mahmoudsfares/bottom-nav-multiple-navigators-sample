@@ -37,6 +37,13 @@ class AppState extends State<App> {
 
   @override
   Widget build(BuildContext context) {
+    // this WillPopScope controls the Navigator widgets
+    // if the current tab is on first screen, then popping will pop the whole
+    // navigator.. according to trials, navigators don't stack over each other
+    // they are selected and the other navigators just keep state but they are
+    // not actually there, so popping the current tab will cause the whole app
+    // to exit. Pop behaviour was overrode here to just switch tabs in this
+    // case instead of popping
     return WillPopScope(
       onWillPop: () async {
         if (_currentTab != TabItem.home && isFirstScreenInTab) {
