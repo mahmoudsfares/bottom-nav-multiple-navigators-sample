@@ -26,6 +26,8 @@ class App extends StatefulWidget {
 }
 
 class AppState extends State<App> {
+
+  static bool isFirstScreenInTab = true;
   var _currentTab = TabItem.home;
 
   final _navigatorKeys = {
@@ -37,18 +39,11 @@ class AppState extends State<App> {
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () async {
-        // maybePop() returns true if there is screens to pop and there's no need to handle pop request by system navigation
-        // returns false if pop request will be handled by system navigation which will usually close the app
-        final isFirstRouteInCurrentTab = !await _navigatorKeys[_currentTab]!.currentState!.maybePop();
-        if (isFirstRouteInCurrentTab) {
-          // if not on the 'main' tab, go to it
-          if (_currentTab != TabItem.home) {
-            _selectTab(TabItem.home);
-            return false;
-          }
+        if (_currentTab != TabItem.home && isFirstScreenInTab) {
+          _selectTab(TabItem.home);
+          return false;
         }
-        // let system handle back button if we're on the first route (close the app)
-        return isFirstRouteInCurrentTab;
+        return true;
       },
       child: Scaffold(
         body: Stack(children: <Widget>[
